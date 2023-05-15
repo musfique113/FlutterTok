@@ -19,7 +19,7 @@ class LoginScreen extends StatelessWidget {
         child : Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GlithEffect(child: const Text("TikTok Clone" ,style: TextStyle(fontWeight: FontWeight.w900 , fontSize: 30),)),
+            GlithEffect(child: const Text("Flutter Tok" ,style: TextStyle(fontWeight: FontWeight.w900 , fontSize: 30),)),
             SizedBox(height: 25,),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
