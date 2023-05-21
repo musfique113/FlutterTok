@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertok/controller/auth_controller.dart';
 import 'package:fluttertok/view/widgets/glitch.dart';
 
 import '../../widgets/text-input.dart';
@@ -40,7 +41,9 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 30,),
-            ElevatedButton(onPressed: (){}, child: Container(
+            ElevatedButton(onPressed: (){
+              AuthController.instance.login(_emailController.text, _passwordController.text);
+            }, child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 50 , vertical: 10),
                 child: Text("Login")))
           ],

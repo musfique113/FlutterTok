@@ -8,17 +8,41 @@ import 'package:fluttertok/model/user.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../view/screens/auth/login_screen.dart';
+import '../view/screens/home.dart';
+
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
 
   File? proimg;
 
-  pickImage() async{
+  pickImage() async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
     //if(image == null) return;
     final img = File(image!.path);
     this.proimg = img;
   }
+
+  //user state persistence
+  late Rx<User?> _user; //obserable keyword
+  User get user => _user.value!;
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
+    _user = Rx<User?>(FirebaseAuth.instance.currentUser);
+    _user.bindStream(FirebaseAuth.instance.authStateChanges());
+    ever(_user, _setInitialView);
+    //Rx - Observable Keyword - Continuously Checking Variable is changing Or not
+  }
+  _setInitialView(User? user){
+    if(user == null){
+      Get.offAll(()=> LoginScreen());
+    }else{
+      Get.offAll(() => HomeScreen());
+    }
+  }
+
   //to reg user
   void SignUp(
       String username, String email, String password, File? image) async {
@@ -42,8 +66,9 @@ class AuthController extends GetxController {
             .collection('users')
             .doc(credential.user!.uid)
             .set(user.toJson());
-      }else{
-        Get.snackbar("Error Creating Account", "Please enter all the required fields");
+      } else {
+        Get.snackbar(
+            "Error Creating Account", "Please enter all the required fields");
       }
     } catch (e) {
       print(e);
@@ -61,5 +86,21 @@ class AuthController extends GetxController {
     TaskSnapshot snapshot = await uploadTask;
     String imageDownUrl = await snapshot.ref.getDownloadURL();
     return imageDownUrl;
+  }
+
+  void login(String email, String password) async
+  {
+
+    try{
+      if(email.isNotEmpty && password.isNotEmpty){
+        await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+      }else{
+        Get.snackbar("Error Logging In", "Please enter all the fields");
+      }
+
+
+    }catch(e){
+      Get.snackbar("Error Logging In",e.toString());
+    }
   }
 }
