@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertok/view/screens/add_videos.dart';
 
 // getRandomColor() => Colors.primaries[Random().nextInt(Colors.primaries.length)];
 
@@ -19,8 +20,7 @@ const borderColor = Colors.grey;
 var pageindex = [
   Text('Home'),
   Text('Search'),
-  Text('Add videos'),
-  //addVideoScreen(),
+  addVideoScreen(),
   Text('Messages'),
   Text('Profile')
 ];
