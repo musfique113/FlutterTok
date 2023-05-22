@@ -57,8 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: Center(
-       // child: pageindex[pageIdx],
-       // child: pageIdx[pageIdx],
+       child: pageindex[pageIdx],
       ),
     );
   }

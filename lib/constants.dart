@@ -15,3 +15,12 @@ getRandomColor() => [
 const backgroundColor = Colors.black;
 var buttonColor = Colors.red[400];
 const borderColor = Colors.grey;
+
+var pageindex = [
+  Text('Home'),
+  Text('Search'),
+  Text('Add videos'),
+  //addVideoScreen(),
+  Text('Messages'),
+  Text('Profile')
+];
