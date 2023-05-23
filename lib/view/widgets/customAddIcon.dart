@@ -10,8 +10,8 @@ class customAddIcon extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            margin: EdgeInsets.only(left :10),
             width: 38,
+            margin: EdgeInsets.only(left :10),
             decoration: BoxDecoration(
                 color: Color.fromARGB(250, 250, 45, 108) ,
                 borderRadius: BorderRadius.circular(7)

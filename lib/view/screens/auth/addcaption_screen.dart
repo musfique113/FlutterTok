@@ -47,21 +47,31 @@ class _addCaptionScreenState extends State<addCaptionScreen> {
               child: VideoPlayer(videoPlayerController),
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20 , vertical: 10),
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height/4,
+              height: MediaQuery.of(context).size.height / 4,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TextInputField(controller: songNameController,
+                  TextInputField(
+                      controller: songNameController,
                       myIcon: Icons.music_note,
                       myLabelText: "Song Name"),
-                  SizedBox(height: 20,),
-                  TextInputField(controller: captionController,
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextInputField(
+                      controller: captionController,
                       myIcon: Icons.closed_caption,
                       myLabelText: "Caption"),
-                  SizedBox(height: 10,),
-                  ElevatedButton(onPressed: (){}, child: Text("Upload") , style: ElevatedButton.styleFrom(primary: buttonColor),)
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Upload"),
+                    style: ElevatedButton.styleFrom(primary: buttonColor),
+                  )
                 ],
               ),
             )

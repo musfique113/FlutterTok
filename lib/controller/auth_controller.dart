@@ -7,9 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:fluttertok/model/user.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../view/screens/auth/login_screen.dart';
 import '../view/screens/home.dart';
+
+
 
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
