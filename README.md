@@ -6,8 +6,9 @@
 <details>
 <summary>Issues: Found and Fix</summary>
 for
+   
 ```
-* What went wrong:
+What went wrong:
 Execution failed for task ':app:checkDebugAarMetadata'.
 > Could not resolve all files for configuration ':app:debugRuntimeClasspath'.
    > Could not find com.otaliastudios:transcoder:0.9.1.
@@ -17,8 +18,7 @@ Execution failed for task ':app:checkDebugAarMetadata'.
        - https://storage.googleapis.com/download.flutter.io/com/otaliastudios/transcoder/0.9.1/transcoder-0.9.1.pom
      Required by:
          project :app > project :video_compress
-
 ```
-[Offitial fix](https://github.com/jonataslaw/VideoCompress/issues/207) 
+[Official fix](https://github.com/jonataslaw/VideoCompress/issues/207) 
 
 </details>
