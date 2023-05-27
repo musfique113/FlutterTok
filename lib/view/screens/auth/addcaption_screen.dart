@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertok/controller/upload_video_controller.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../constants.dart';
 import '../../widgets/text-input.dart';
+import 'package:get/get.dart';
 
 class addCaptionScreen extends StatefulWidget {
   File videoFile;
@@ -21,6 +23,7 @@ class _addCaptionScreenState extends State<addCaptionScreen> {
   late VideoPlayerController videoPlayerController;
   TextEditingController songNameController = new TextEditingController();
   TextEditingController captionController = new TextEditingController();
+  VideoUploadController videoUploadController = Get.put(VideoUploadController());
 
   @override
   void initState() {
@@ -68,7 +71,9 @@ class _addCaptionScreenState extends State<addCaptionScreen> {
                     height: 10,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      videoUploadController.uploadVideo(songNameController.text, captionController.text, widget.videoPath);
+                    },
                     child: Text("Upload"),
                     style: ElevatedButton.styleFrom(primary: buttonColor),
                   )

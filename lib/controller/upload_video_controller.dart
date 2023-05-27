@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import 'package:video_compress/video_compress.dart';
 
+import '../model/video.dart';
+
 /*
 Main video upload method
 Video to storage method
@@ -16,6 +18,7 @@ video thumbnail to storage method
 * */
 
 class VideoUploadController extends GetxController {
+  static VideoUploadController instance = Get.find();
   var uuid = Uuid();
 
   Future<File> _getThumb(String videoPath) async {
@@ -24,12 +27,37 @@ class VideoUploadController extends GetxController {
   }
 
   uploadVideo(String songName, String caption, String videoPath) async {
-    String uid = FirebaseAuth.instance.currentUser!.uid;
-    DocumentSnapshot userDoc =
-        await FirebaseFirestore.instance.collection("users").doc(uid).get();
-    String id = uuid.v1();
-    _uploadvideoToStorage(id, videoPath);
-    String thumbnail = await _uploadVideoThumbToStorage(id, videoPath);
+    try {
+      String uid = FirebaseAuth.instance.currentUser!.uid;
+      DocumentSnapshot userDoc =
+          await FirebaseFirestore.instance.collection("users").doc(uid).get();
+      String id = uuid.v1();
+      String videoUrl = await _uploadvideoToStorage(id, videoPath);
+
+      String thumbnail = await _uploadVideoThumbToStorage(id, videoPath);
+      Video video = Video(
+          uid: uid,
+          username: (userDoc.data()! as Map<String, dynamic>)['name'],
+          videoUrl: videoUrl,
+          thumbnail: thumbnail,
+          shareCount: 0,
+          songName: songName,
+          commentsCount: 0,
+          likes: [],
+          profilePic: (userDoc.data()! as Map<String, dynamic>)['profilePic'],
+          caption: caption,
+          id: id);
+
+      await FirebaseFirestore.instance
+          .collection("videos")
+          .doc(id)
+          .set(video.toJson());
+      Get.snackbar(
+          "Video Uploaded Successfully", "Thanks for share your content");
+      Get.back();
+    } catch (e) {
+      Get.snackbar("Error uploading ", e.toString());
+    }
   }
 
   Future<String> _uploadVideoThumbToStorage(String id, String videoPath) async {
