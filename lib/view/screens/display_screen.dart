@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertok/controller/video_controller.dart';
+import 'package:fluttertok/view/widgets/AlbumRotator.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../widgets/flutterTokVideoPlayer.dart';
 import '../widgets/profile_button.dart';
 
 class DisplayVideo_Screen extends StatelessWidget {
-  const DisplayVideo_Screen({Key? key}) : super(key: key);
+  DisplayVideo_Screen({Key? key}) : super(key: key);
+  final VideoController videoController = Get.put(VideoController());
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +63,8 @@ class DisplayVideo_Screen extends StatelessWidget {
                               color: Colors.white,
                             ),
                             Text("LIKES",
-                                style:
-                                    TextStyle(fontSize: 15, color: Colors.white)),
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.white)),
                           ],
                         ),
                         Column(
@@ -70,8 +75,8 @@ class DisplayVideo_Screen extends StatelessWidget {
                               color: Colors.white,
                             ),
                             Text("Share",
-                                style:
-                                TextStyle(fontSize: 15, color: Colors.white)),
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.white)),
                           ],
                         ),
                         Column(
@@ -82,8 +87,14 @@ class DisplayVideo_Screen extends StatelessWidget {
                               color: Colors.white,
                             ),
                             Text("Comments",
-                                style:
-                                TextStyle(fontSize: 15, color: Colors.white)),
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.white)),
+                            SizedBox(height:20 ,),
+                            Column(
+                              children: [
+                                AlbumRotator(profilePicUrl: "adf"),
+                              ],
+                            )
                           ],
                         ),
                       ],
