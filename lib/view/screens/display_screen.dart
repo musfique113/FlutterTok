@@ -23,7 +23,7 @@ class DisplayVideo_Screen extends StatelessWidget {
               return Stack(
                 children: [
                   FlutterTokVideoPlayer(
-                    videoUrl: "adfa",
+                    videoUrl: "adf",
                   ),
                   Container(
                     margin: EdgeInsets.only(bottom: 10, left: 15),
